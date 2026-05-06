@@ -1,0 +1,41 @@
+.block {
+    align-items: center;
+    height: 100%;
+    background-color: white;
+    margin-top: 50px;
+}
+
+.tooltip {
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+.transmitter {
+    fill: orangered;
+}
+
+.extender {
+    fill: green;
+}
+
+.gateway {
+    fill: lightgray;
+}
+
+.transmitterTxt {
+    fill: lightsalmon;
+}
+
+.extenderTxt {
+    fill: lightgreen;
+}
+
+.gatewayTxt {
+    fill: white;
+}

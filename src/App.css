@@ -2,8 +2,42 @@
     align-items: center;
     height: 100%;
     background-color: white;
-    margin-top: 50px;
+    margin-top: 40px;
+    padding-top: 20px;
 }
+
+.filters-div select {
+    margin: 0 5px;
+    width: 10%;
+}
+
+.loading {
+    margin-top: 50px;
+    background-color: white;
+    color: brown;
+    padding: 50px;
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 5px dotted brown;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 3s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+      
 
 .tooltip {
     top: 0px;

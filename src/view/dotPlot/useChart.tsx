@@ -37,9 +37,9 @@ export const Chart: React.FC<ChartProps> = ({ data, sortOrder, onScaleReady }) =
     }
   }, [sortOrder]);
 
-  if (data.length === 0) {
-    return <h3>- LOADING DATA -</h3>
-  }
+  // if (data.length === 0) {
+  //   return <h3>- LOADING DATA -</h3>
+  // }
 
   return <svg ref={svgRef} />;
 };

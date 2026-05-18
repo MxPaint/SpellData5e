@@ -9,7 +9,11 @@ export class SpellChartEngine {
   public color: d3.ScaleOrdinal<number, string, never>;
   private nodes;
 
-  constructor(container: SVGSVGElement, data: SpellGroup[]) {
+  constructor(
+    container: SVGSVGElement,
+    data: SpellGroup[],
+    onHover: (event: MouseEvent, data: any | null) => void
+  ) {
     this.svg = d3.select(container);
     
     const schools = d3.group(data, d => d.school.value);
@@ -17,7 +21,7 @@ export class SpellChartEngine {
     const levels = new Set(data.map(d => d.level.value));
     
     const width = 1000;
-    const height = schoolNames.length * 70;
+    const height = schoolNames.length * 65;
     const marginTop = 30;
     const marginRight = 10;
     const marginBottom = 10;
@@ -93,7 +97,10 @@ export class SpellChartEngine {
         .attr("cx", d => d.fx) // Use calculated simulation x (which matches fx)
         .attr("cy", d => d.y) // Use calculated simulation y (pushed apart)
         .attr("fill", d => this.color(d.level.value))
-        .attr("r", 4);
+        .attr("r", 4)
+        .on('mouseover', (event, d) => onHover(event, d))
+        .on('mousemove', (event, d) => onHover(event, d))
+        .on('mouseleave', (event) => onHover(event, null));
   }
 
   public update(names: string[]) {

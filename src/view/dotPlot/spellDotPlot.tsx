@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Chart } from './useChart';
 import type { SpellGroup } from '../../domain/entities/SpellGroup';
 import type { School } from '../../domain/valueObjects/School';
+import { GroupTooltip } from '../tooltip/GroupTooltip';
 
 interface Props {
   data: SpellGroup[];
@@ -31,6 +32,8 @@ const Legend = ({ scale }: { scale: d3.ScaleOrdinal<number, string, never> }) =>
 export const SpellDotPlot = (props: Props ) => {
   const [colorScale, setColorScale] = useState<d3.ScaleOrdinal<number, string, never> | null>(null);
 
+  const [tooltip, setTooltip] = useState<{ x: number; y: number; data: any } | null>(null);
+
   const schoolNames = props.sortOrder.map(school => {
     return school.value;
   })
@@ -42,7 +45,21 @@ export const SpellDotPlot = (props: Props ) => {
         data={props.data}
         sortOrder={schoolNames}
         onScaleReady={(scale) => setColorScale(() => scale)}
-       />
+        onHover={(event, data) => {
+          if (data) {
+            setTooltip({ x: event.clientX, y: event.clientY, data });
+          } else {
+            setTooltip(null);
+          }
+        }}
+      />
+      {tooltip && (
+        <GroupTooltip 
+          x={tooltip.x} 
+          y={tooltip.y} 
+          data={tooltip.data} 
+        />
+      )}
     </div>
   );
 };

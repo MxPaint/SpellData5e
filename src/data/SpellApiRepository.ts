@@ -66,52 +66,6 @@ export class SpellApiRepository implements SpellRepository{
     return this.getSortedSchoolsByFilter(() => true); 
   }
 
-  // getGroupOrderLevel(level: Level): School[] {
-
-  //   const groupList: {school: School, count: number}[] = [];
-  //   schoolList.forEach((school) => {
-
-  //     let count = 0;
-  //     this.spellList.forEach((spell) => {
-  //       if(spell.school.value === school && spell.level === level){
-  //         count++;
-  //       }
-  //     })
-
-  //     groupList.push({school: School.create(school), count});
-
-  //   })
-
-  //   groupList.sort((a, b) => a.count - b.count);
-  //   const schoolOrder = groupList.map((group) => group.school)
-
-  //   return schoolOrder;
-
-  // }
-  
-  // getGroupOrderTotal(): School[] {
-
-  //   const groupList: {school: School, count: number}[] = [];
-  //   schoolList.forEach((school) => {
-
-  //     let count = 0;
-  //     this.spellList.forEach((spell) => {
-  //       if(spell.school.value === school){
-  //         count++;
-  //       }
-  //     })
-
-  //     groupList.push({school: School.create(school), count});
-
-  //   })
-
-  //   groupList.sort((a, b) => a.count - b.count);
-  //   const schoolOrder = groupList.map((group) => group.school)
-
-  //   return schoolOrder;
-
-  // }
-  
   getSpellGroups(): SpellGroup[] { 
 
     const groupList: SpellGroup[] = [];

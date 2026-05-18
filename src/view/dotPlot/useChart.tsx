@@ -6,40 +6,29 @@ interface ChartProps {
   data: SpellGroup[];
   sortOrder?: string[];
   onScaleReady?: (scale: d3.ScaleOrdinal<number, string, never>) => void;
+  onHover: (event: MouseEvent, data: any | null) => void;
 }
 
-export const Chart: React.FC<ChartProps> = ({ data, sortOrder, onScaleReady }) => {
+export const Chart: React.FC<ChartProps> = ({ data, sortOrder, onScaleReady, onHover }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const engineRef = useRef<SpellChartEngine | null>(null);
 
   useEffect(() => {
-    //console.log("Data received by Chart:", data);
-    // if (data.length === 0) {
-    //   console.warn("Chart received empty data array.");
-    //   return;
-    // }
-    //console.log("SVG Ref current:", svgRef.current);
-    
     if (svgRef.current && !engineRef.current) {
-      engineRef.current = new SpellChartEngine(svgRef.current, data);
+      engineRef.current = new SpellChartEngine(svgRef.current, data, onHover);
 
       if (onScaleReady) {
         onScaleReady(engineRef.current.color);
       }
     }
 
-  }, [data, onScaleReady]);
+  }, [data, onScaleReady, onHover]);
 
   useEffect(() => {
-    //sortOrder = ['Abjuration', 'Conjuration', 'Divination', 'Enchantment', 'Evocation', 'Illusion', 'Necromancy', 'Transmutation'];
     if (engineRef.current && sortOrder) {
       engineRef.current.update(sortOrder);
     }
   }, [sortOrder]);
-
-  // if (data.length === 0) {
-  //   return <h3>- LOADING DATA -</h3>
-  // }
 
   return <svg ref={svgRef} />;
 };

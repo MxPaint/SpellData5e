@@ -4,8 +4,9 @@
 
 .chart-container {
   padding: 20px;
+  padding-bottom: 10px;
   border-bottom: 2px solid grey;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .legend-container {

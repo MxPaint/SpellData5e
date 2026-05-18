@@ -12,9 +12,9 @@ export const SpellBlock = (props: Props) => {
 
   const classList = () => {
     return(
-      <div>
+      <div className='class-list'>
         {lists.map((cl) => (
-          <p key={cl.value}>- {cl.value}</p>
+          <p className='class-name' key={cl.value}>{cl.value}</p>
         ))}
       </div>
     )
@@ -27,7 +27,7 @@ export const SpellBlock = (props: Props) => {
       <h3>{name}</h3>
       <p>lvl {level} {school}</p>
       <hr/>
-      <h4>Available for:</h4>
+      <strong>Available for:</strong>
       {classList()}
     </div>
   )

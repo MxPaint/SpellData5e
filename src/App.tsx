@@ -36,6 +36,8 @@ export default function App() {
   const [classFilter, setClassFilter] = useState<string>('all');
 
   useEffect(() => {
+    const {getOrderLevel, getOrderTotal} = root.getOrderCases();
+
     const updateOrder = () => {
       let newOrder: School[];
 
@@ -51,11 +53,11 @@ export default function App() {
           case '7':
           case '8':
           case '9': 
-            newOrder = root.getSchoolOrderLevel(Level.create(parseInt(sortType)));
+            newOrder = getOrderLevel.execute(Level.create(parseInt(sortType)));
             setSortedList(newOrder);
             break;
           case 'total':
-            newOrder = root.getSchoolOrderTotal()
+            newOrder = getOrderTotal.execute()
             setSortedList(newOrder);
             break;
           default:
@@ -82,16 +84,14 @@ export default function App() {
   }, [levelFilter, schoolFilter, classFilter]);
   
   useEffect(() => {
-    root.getRawSpellList().then(() => {
-      setListData(root.getSpellList());
-      setChartData(root.getSpellGroups());
-      setFilteredList(root.getSpellList());
+    const {getRawList, getSpellList, getSpellGroups} = root.getDataCases();
+
+    getRawList.execute().then(() => {
+      setListData(getSpellList.execute());
+      setChartData(getSpellGroups.execute());
+      setFilteredList(getSpellList.execute());
     });
   }, []);
-
-  useState(() => {
-
-  })
 
   if (chartData.length === 0) {
     return (
@@ -106,29 +106,11 @@ export default function App() {
 
   return (
     <div className="block">
-      <div>
-        <p>Order by:</p>
-        <select name="order" defaultValue={"default"} onChange={(e) => setSortType(e.target.value as SortOrder)}>
-          <option value="default">Default</option>
-          <option value="0">Cantrips - lvl 0</option>
-          <option value="1">Level 1</option>
-          <option value="2">Level 2</option>
-          <option value="3">Level 3</option>
-          <option value="4">Level 4</option>
-          <option value="5">Level 5</option>
-          <option value="6">Level 6</option>
-          <option value="7">Level 7</option>
-          <option value="8">Level 8</option>
-          <option value="9">Level 9</option>
-          <option value="total">Total spells</option>
-        </select>
-      </div>
-      <SpellDotPlot data={chartData} sortOrder={sortedList}/>
-      <div>
-        <p>List filters:</p>
-        <div className='filters-div'>
-          <select name="level" defaultValue={"all"} onChange={(e) => setLevelFilter(e.target.value)}>
-            <option value="all">All levels</option>
+      <div className='fixed-content'>
+        <div className='graph-order'>
+          <p>Order by:</p>
+          <select name="order" defaultValue={"default"} onChange={(e) => setSortType(e.target.value as SortOrder)}>
+            <option value="default">Default</option>
             <option value="0">Cantrips - lvl 0</option>
             <option value="1">Level 1</option>
             <option value="2">Level 2</option>
@@ -139,28 +121,48 @@ export default function App() {
             <option value="7">Level 7</option>
             <option value="8">Level 8</option>
             <option value="9">Level 9</option>
+            <option value="total">Total spells</option>
           </select>
-          <select name="school" defaultValue={"all"} onChange={(e) => setSchoolFilter(e.target.value)}>
-            <option value="all">All schools</option>
-            <option value="Abjuration">Abjuration</option>
-            <option value="Conjuration">Conjuration</option>
-            <option value="Divination">Divination</option>
-            <option value="Enchantment">Enchantment</option>
-            <option value="Evocation">Evocation</option>
-            <option value="Illusion">Illusion</option>
-            <option value="Necromancy">Necromancy</option>
-            <option value="Transmutation">Transmutation</option>
-          </select>
-          <select name="list" defaultValue={"all"} onChange={(e) => setClassFilter(e.target.value)}>
-            <option value="all">All spell lists</option>
-            <option value="bard">Bard</option>
-            <option value="cleric">Cleric</option>
-            <option value="druid">Druid</option>
-            <option value="ranger">Ranger</option>
-            <option value="sorcerer">Sorcerer</option>
-            <option value="warlock">Warlock</option>
-            <option value="wizard">Wizard</option>
-          </select>
+        </div>
+        <SpellDotPlot data={chartData} sortOrder={sortedList}/>
+        <div>
+          <p>List filters:</p>
+          <div className='filters-div'>
+            <select name="level" defaultValue={"all"} onChange={(e) => setLevelFilter(e.target.value)}>
+              <option value="all">All levels</option>
+              <option value="0">Cantrips - lvl 0</option>
+              <option value="1">Level 1</option>
+              <option value="2">Level 2</option>
+              <option value="3">Level 3</option>
+              <option value="4">Level 4</option>
+              <option value="5">Level 5</option>
+              <option value="6">Level 6</option>
+              <option value="7">Level 7</option>
+              <option value="8">Level 8</option>
+              <option value="9">Level 9</option>
+            </select>
+            <select name="school" defaultValue={"all"} onChange={(e) => setSchoolFilter(e.target.value)}>
+              <option value="all">All schools</option>
+              <option value="Abjuration">Abjuration</option>
+              <option value="Conjuration">Conjuration</option>
+              <option value="Divination">Divination</option>
+              <option value="Enchantment">Enchantment</option>
+              <option value="Evocation">Evocation</option>
+              <option value="Illusion">Illusion</option>
+              <option value="Necromancy">Necromancy</option>
+              <option value="Transmutation">Transmutation</option>
+            </select>
+            <select name="list" defaultValue={"all"} onChange={(e) => setClassFilter(e.target.value)}>
+              <option value="all">All spell lists</option>
+              <option value="bard">Bard</option>
+              <option value="cleric">Cleric</option>
+              <option value="druid">Druid</option>
+              <option value="ranger">Ranger</option>
+              <option value="sorcerer">Sorcerer</option>
+              <option value="warlock">Warlock</option>
+              <option value="wizard">Wizard</option>
+            </select>
+          </div>
         </div>
       </div>
       <SpellList data={filteredList}/>

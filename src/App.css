@@ -7,6 +7,36 @@
     flex-direction: column;
 }
 
+.switch-parent {
+  position: absolute;
+  justify-self: center;
+  width: 1000px;
+  padding-top: 15px;
+  display: flex;
+  justify-content: right;
+  z-index: 1;
+}
+
+.header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+}
+
+.header div {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+}
+
+.short {
+  flex: 1;
+}
+
+.long {
+  flex: 2;
+}
+
 .fixed-content {
   flex-shrink: 0;
 }

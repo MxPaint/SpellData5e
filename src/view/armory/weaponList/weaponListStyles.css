@@ -1,0 +1,27 @@
+.weapon-list {
+  width: 100%;
+  overflow-y: auto;
+  border-top: 2px solid grey;
+}
+
+.weapon-line {
+  border-bottom: 1px lightgray solid;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+}
+
+.weapon-line p {
+  flex: 1;
+}
+
+.prop-list {
+  flex: 2;
+}
+
+.prop-list p {
+  font-size: small;
+  flex: 1;
+  display: inline;
+}

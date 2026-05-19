@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Chart } from './useChart';
-import type { SpellGroup } from '../../domain/entities/SpellGroup';
-import type { School } from '../../domain/valueObjects/School';
+import type { SpellGroup } from '../../../domain/entities/SpellGroup';
+import type { School } from '../../../domain/valueObjects/School';
 import { GroupTooltip } from '../tooltip/GroupTooltip';
 
 interface Props {

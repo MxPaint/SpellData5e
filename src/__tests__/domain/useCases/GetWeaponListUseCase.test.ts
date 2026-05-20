@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { GetWeaponListUseCase } from '../../../domain/useCases/GetWeaponListUseCase';
+import { GetWeaponListUseCase } from '../../../domain/Weapons/useCases/GetWeaponListUseCase';
 import type { WeaponApiRepository } from '../../../data/WeaponApiRepository';
-import { Weapon } from '../../../domain/entities/Weapon';
+import { Weapon } from '../../../domain/Weapons/entities/Weapon';
 
 describe('Tests of GetWeaponListUseCase', () => {
   let useCase: GetWeaponListUseCase;

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { GetRawSpellListUseCase } from '../../../domain/useCases/GetRawSpellListUseCase';
+import { GetRawSpellListUseCase } from '../../../domain/Spells/useCases/GetRawSpellListUseCase';
 import type { SpellApiRepository } from '../../../data/SpellApiRepository';
 
 describe('GetRawSpellListUseCase', () => {

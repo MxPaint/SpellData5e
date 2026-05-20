@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { Count } from '../../../domain/valueObjects/Count';
+import { Count } from '../../../domain/Shared/valueObjects/Count';
 
 describe('Tests on Count Value Object', () => {
   it('should create a Count instance with a valid value', () => {

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { CompositionRoot } from "../../compositionRoot";
-import type { Spell } from "../../domain/entities/Spell";
-import type { SpellGroup } from "../../domain/entities/SpellGroup";
-import { CharacterClass } from "../../domain/valueObjects/CharacterClass";
-import { Level } from "../../domain/valueObjects/Level";
-import { School } from "../../domain/valueObjects/School";
+import type { Spell } from "../../domain/Spells/entities/Spell";
+import type { SpellGroup } from "../../domain/Spells/entities/SpellGroup";
+import { CharacterClass } from "../../domain/Shared/valueObjects/CharacterClass";
+import { Level } from "../../domain/Shared/valueObjects/Level";
+import { School } from "../../domain/Shared/valueObjects/School";
 import { SpellDotPlot } from "./dotPlot/spellDotPlot";
 import { listFiltered } from "./spellList/listFilter";
 import { SpellList } from "./spellList/spellList";

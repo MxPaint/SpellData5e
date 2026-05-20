@@ -1,8 +1,8 @@
-import { Id } from "../valueObjects/Id";
-import { Level } from "../valueObjects/Level";
-import { Count } from "../valueObjects/Count";
-import { School } from "../valueObjects/School";
-import { Entity } from "./Entity";
+import { Id } from "../../Shared/valueObjects/Id";
+import { Level } from "../../Shared/valueObjects/Level";
+import { Count } from "../../Shared/valueObjects/Count";
+import { School } from "../../Shared/valueObjects/School";
+import { Entity } from "../../Shared/entities/Entity";
 
 export interface SpellGroupObjectData {
   id: Id;

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { Level } from '../../../domain/valueObjects/Level';
+import { Level } from '../../../domain/Shared/valueObjects/Level';
 
 describe('Tests on Level Value Object', () => {
   it('should create a Level instance with a valid value', () => {

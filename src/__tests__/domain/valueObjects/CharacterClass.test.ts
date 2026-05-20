@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CharacterClass } from '../../../domain/valueObjects/CharacterClass';
+import { CharacterClass } from '../../../domain/Shared/valueObjects/CharacterClass';
 
 describe('Tests on CharacterClass Value Object', () => {
   

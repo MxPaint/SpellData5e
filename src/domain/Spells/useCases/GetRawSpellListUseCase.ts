@@ -1,4 +1,4 @@
-import type { SpellApiRepository } from "../../data/SpellApiRepository";
+import type { SpellApiRepository } from "../../../data/SpellApiRepository";
 
 export class GetRawSpellListUseCase {
 

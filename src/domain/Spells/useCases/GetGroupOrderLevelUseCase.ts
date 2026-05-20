@@ -1,6 +1,6 @@
-import type { SpellApiRepository } from "../../data/SpellApiRepository";
-import type { Level } from "../valueObjects/Level";
-import type { School } from "../valueObjects/School";
+import type { SpellApiRepository } from "../../../data/SpellApiRepository";
+import type { Level } from "../../Shared/valueObjects/Level";
+import type { School } from "../../Shared/valueObjects/School";
 
 export class GetGroupOrderLevelUseCase {
 

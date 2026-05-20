@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import type { SpellApiRepository } from '../../../data/SpellApiRepository';
-import { GetGroupOrderTotalUseCase } from '../../../domain/useCases/GetGroupOrderTotalUseCase';
-import { School } from '../../../domain/valueObjects/School';
+import { GetGroupOrderTotalUseCase } from '../../../domain/Spells/useCases/GetGroupOrderTotalUseCase';
+import { School } from '../../../domain/Shared/valueObjects/School';
 
 describe('Tests of GetGroupOrderTotalUseCase', () => {
   let useCase: GetGroupOrderTotalUseCase;

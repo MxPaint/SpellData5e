@@ -1,4 +1,4 @@
-import type { WeaponApiRepository } from "../../data/WeaponApiRepository";
+import type { WeaponApiRepository } from "../../../data/WeaponApiRepository";
 
 export class GetRawWeaponListUseCase {
 

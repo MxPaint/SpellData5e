@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { GetRawWeaponListUseCase } from '../../../domain/useCases/GetRawWeaponListUseCase';
+import { GetRawWeaponListUseCase } from '../../../domain/Weapons/useCases/GetRawWeaponListUseCase';
 import type { WeaponApiRepository } from '../../../data/WeaponApiRepository';
 
 describe('GetRawWeaponListUseCase', () => {

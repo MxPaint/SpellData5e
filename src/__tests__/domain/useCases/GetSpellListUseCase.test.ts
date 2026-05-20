@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { GetSpellListUseCase } from '../../../domain/useCases/GetSpellListUseCase';
+import { GetSpellListUseCase } from '../../../domain/Spells/useCases/GetSpellListUseCase';
 import type { SpellApiRepository } from '../../../data/SpellApiRepository';
-import { Spell } from '../../../domain/entities/Spell';
+import { Spell } from '../../../domain/Spells/entities/Spell';
 
 describe('Tests of GetSpellListUseCase', () => {
   let useCase: GetSpellListUseCase;

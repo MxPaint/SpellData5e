@@ -1,5 +1,5 @@
-import { Weapon } from "../domain/entities/Weapon";
-import type { WeaponRepository } from "../domain/WeaponRepository";
+import { Weapon } from "../domain/Weapons/entities/Weapon";
+import type { WeaponRepository } from "../domain/Weapons/WeaponRepository";
 
 interface Open5eResponse<T> {
   count: number;

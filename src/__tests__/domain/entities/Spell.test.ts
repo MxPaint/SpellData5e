@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { Spell, type SpellData } from '../../../domain/entities/Spell';
-import { CharacterClass } from '../../../domain/valueObjects/CharacterClass';
-import { Id } from '../../../domain/valueObjects/Id';
-import { Level } from '../../../domain/valueObjects/Level';
-import { School } from '../../../domain/valueObjects/School';
+import { Spell, type SpellData } from '../../../domain/Spells/entities/Spell';
+import { CharacterClass } from '../../../domain/Shared/valueObjects/CharacterClass';
+import { Id } from '../../../domain/Shared/valueObjects/Id';
+import { Level } from '../../../domain/Shared/valueObjects/Level';
+import { School } from '../../../domain/Shared/valueObjects/School';
 
 describe('Tests of Entity Spell', () => {
 

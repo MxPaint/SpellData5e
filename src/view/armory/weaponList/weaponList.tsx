@@ -1,4 +1,4 @@
-import type { Weapon } from "../../../domain/entities/Weapon";
+import type { Weapon } from "../../../domain/Weapons/entities/Weapon";
 import { WeaponLine } from "./weaponLine";
 import './weaponListStyles.css';
 

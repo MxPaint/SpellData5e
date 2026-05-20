@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import type { SpellGroup } from "../../../domain/entities/SpellGroup";
+import type { SpellGroup } from "../../../domain/Spells/entities/SpellGroup";
 import './chartStyles.css';
 
 export class SpellChartEngine {

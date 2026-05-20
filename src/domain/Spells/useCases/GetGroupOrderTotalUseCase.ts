@@ -1,5 +1,5 @@
-import type { SpellApiRepository } from "../../data/SpellApiRepository";
-import type { School } from "../valueObjects/School";
+import type { SpellApiRepository } from "../../../data/SpellApiRepository";
+import type { School } from "../../Shared/valueObjects/School";
 
 export class GetGroupOrderTotalUseCase {
 

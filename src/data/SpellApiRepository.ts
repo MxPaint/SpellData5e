@@ -1,8 +1,8 @@
-import { Spell } from '../domain/entities/Spell';
-import { SpellGroup } from '../domain/entities/SpellGroup';
-import type { SpellRepository } from '../domain/SpellRepository';
-import type { Level } from '../domain/valueObjects/Level';
-import { School } from '../domain/valueObjects/School';
+import { Spell } from '../domain/Spells/entities/Spell';
+import { SpellGroup } from '../domain/Spells/entities/SpellGroup';
+import type { Level } from '../domain/Shared/valueObjects/Level';
+import { School } from '../domain/Shared/valueObjects/School';
+import type { SpellRepository } from '../domain/Spells/SpellRepository';
 
 interface Open5eResponse<T> {
   count: number;

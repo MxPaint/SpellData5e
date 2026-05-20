@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { Weapon, type WeaponData } from '../../../domain/entities/Weapon';
-import { Id } from '../../../domain/valueObjects/Id';
-import { TextField } from '../../../domain/valueObjects/TextField';
-import { Damage } from '../../../domain/valueObjects/Damage';
+import { Weapon, type WeaponData } from '../../../domain/Weapons/entities/Weapon';
+import { Id } from '../../../domain/Shared/valueObjects/Id';
+import { TextField } from '../../../domain/Shared/valueObjects/TextField';
+import { Damage } from '../../../domain/Shared/valueObjects/Damage';
 
 describe('Tests of Entity Weapon', () => {
 

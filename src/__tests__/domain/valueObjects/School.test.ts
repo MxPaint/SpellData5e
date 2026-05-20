@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { School } from '../../../domain/valueObjects/School';
+import { School } from '../../../domain/Shared/valueObjects/School';
 
 describe('Tests on School Value Object', () => {
 

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { GetSpellGroupsUseCase } from '../../../domain/useCases/GetSpellGroupsUseCase';
+import { GetSpellGroupsUseCase } from '../../../domain/Spells/useCases/GetSpellGroupsUseCase';
 import type { SpellApiRepository } from '../../../data/SpellApiRepository';
-import { SpellGroup } from '../../../domain/entities/SpellGroup';
+import { SpellGroup } from '../../../domain/Spells/entities/SpellGroup';
 
 describe('Tests of GetSpellGroupsUseCase', () => {
   let useCase: GetSpellGroupsUseCase;

@@ -1,4 +1,4 @@
-import type { SpellGroup } from "../../../domain/entities/SpellGroup";
+import type { SpellGroup } from "../../../domain/Spells/entities/SpellGroup";
 import './tooltipStyle.css';
 
 interface TooltipData {

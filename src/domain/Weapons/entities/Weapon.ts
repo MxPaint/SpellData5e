@@ -1,7 +1,7 @@
-import { Damage } from "../valueObjects/Damage";
-import { Id } from "../valueObjects/Id";
-import { TextField } from "../valueObjects/TextField";
-import { Entity } from "./Entity";
+import { Entity } from "../../Shared/entities/Entity";
+import { Damage } from "../../Shared/valueObjects/Damage";
+import { Id } from "../../Shared/valueObjects/Id";
+import { TextField } from "../../Shared/valueObjects/TextField";
 
 export interface WeaponObjectData {
   id: Id;

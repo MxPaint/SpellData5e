@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { TextField } from '../../../domain/valueObjects/TextField';
+import { TextField } from '../../../domain/Shared/valueObjects/TextField';
 
 describe('Tests on TextField Value Object', () => {
   

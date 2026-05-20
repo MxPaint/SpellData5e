@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { Id } from '../../../domain/valueObjects/Id';
+import { Id } from '../../../domain/Shared/valueObjects/Id';
 
 describe('Tests on Id Value Object', () => {
   it('should create an Id instance with no value', () => {

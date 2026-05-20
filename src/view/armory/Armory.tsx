@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import type { CompositionRoot } from "../../compositionRoot"
-import { Weapon } from "../../domain/entities/Weapon"
+import { Weapon } from "../../domain/Weapons/entities/Weapon"
 import { WeaponList } from "./weaponList/weaponList"
 
 interface Props {

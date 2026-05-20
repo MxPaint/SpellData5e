@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { SpellChartEngine } from "./chartEngine";
-import type { SpellGroup } from "../../../domain/entities/SpellGroup";
+import type { SpellGroup } from "../../../domain/Spells/entities/SpellGroup";
 
 interface ChartProps {
   data: SpellGroup[];

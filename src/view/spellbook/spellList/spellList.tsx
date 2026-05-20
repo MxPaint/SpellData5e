@@ -1,4 +1,4 @@
-import type { Spell } from "../../../domain/entities/Spell";
+import type { Spell } from "../../../domain/Spells/entities/Spell";
 import './listStyles.css'
 import { SpellBlock } from "./spellBlock";
 

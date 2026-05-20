@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { GetGroupOrderLevelUseCase } from '../../../domain/useCases/GetGroupOrderLevelUseCase';
+import { GetGroupOrderLevelUseCase } from '../../../domain/Spells/useCases/GetGroupOrderLevelUseCase';
 import type { SpellApiRepository } from '../../../data/SpellApiRepository';
-import { Level } from '../../../domain/valueObjects/Level';
-import { School } from '../../../domain/valueObjects/School';
+import { Level } from '../../../domain/Shared/valueObjects/Level';
+import { School } from '../../../domain/Shared/valueObjects/School';
 
 describe('GetGroupOrderLevelUseCase', () => {
   let useCase: GetGroupOrderLevelUseCase;

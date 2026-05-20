@@ -1,8 +1,8 @@
-import { CharacterClass } from "../valueObjects/CharacterClass";
-import { Id } from "../valueObjects/Id";
-import { Level } from "../valueObjects/Level";
-import { School } from "../valueObjects/School";
-import { Entity } from "./Entity";
+import { Entity } from "../../Shared/entities/Entity";
+import { CharacterClass } from "../../Shared/valueObjects/CharacterClass";
+import { Id } from "../../Shared/valueObjects/Id";
+import { Level } from "../../Shared/valueObjects/Level";
+import { School } from "../../Shared/valueObjects/School";
 
 export interface SpellObjectData {
   id: Id;

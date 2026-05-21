@@ -1,0 +1,103 @@
+.monster-list {
+  width: 100%;
+  overflow-y: auto;
+  border-top: 2px solid grey;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.monster-column {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+}
+
+.monster-block {
+  padding: 10px;
+  height: fit-content;
+  width: inherit;
+  grid-row: auto;
+  border-radius: 10px;
+  border: 2px solid brown;
+  box-shadow: 0px 5px 5px grey;
+  margin: 12px 0;
+  background-color: rgb(235, 186, 123);
+  color: darkred;
+  font-size: medium;
+}
+
+.left-block {
+  margin: 12px 0 12px auto;
+}
+
+.center-block {
+  margin: 12px auto;
+}
+
+.right-block {
+  margin: 12px auto 12px 0;
+}
+
+strong {
+  font-size: large;
+  width: 100%;
+}
+
+.monster-list hr{
+  border-color: brown;
+  margin: 0;
+}
+
+.monster-card {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+
+.monster-card p {
+  margin: 0 5px;
+}
+
+.monster-info {
+  width: 50%;
+  border-right: 1px solid brown;
+  padding-top: 5px;
+}
+
+.speed-list{
+  border-top: 1px solid brown;
+  border-bottom: 1px solid brown;
+}
+
+.stats {
+  margin-top: 10px;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  border: 2px solid brown;
+  border-collapse: collapse;
+}
+td {
+  border: 1px solid brown;
+  border-collapse: collapse;
+  width: 30px;
+  padding: 0 5px;
+  background-color: rgb(246, 217, 179);
+}
+
+ul {
+  margin: 0;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.small-text {
+  font-size: small;
+}

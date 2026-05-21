@@ -21,6 +21,7 @@
   border-radius: 20px;
   display: flex;
   font-size: medium;
+  box-shadow: 0px 5px 5px;
 }
 
 .description {
@@ -40,11 +41,9 @@
 }
 
 .data-card div {
-  border-top: 1px solid lightgray;
   margin: 5px 0;
   padding: 5px 0;
 }
-
 
 .Armor {
   border: rgb(118, 118, 118) solid 1px;

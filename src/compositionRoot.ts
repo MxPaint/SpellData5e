@@ -10,11 +10,15 @@ import { GetWeaponListUseCase } from "./domain/Weapons/useCases/GetWeaponListUse
 import { MagicItemApiRepository } from "./data/MagicItemApiRepository";
 import { GetMagicItemListUseCase } from "./domain/MagicItems/useCases/GetMagicItemListUseCase";
 import { GetRawMagicItemListUseCase } from "./domain/MagicItems/useCases/GetRawMagicItemListUseCase";
+import { MonsterApiRepository } from "./data/MonsterApiRepository";
+import { GetRawMonsterListUseCase } from "./domain/Monsters/useCases/GetRawMonsterListUseCase";
+import { GetMonsterListUseCase } from "./domain/Monsters/useCases/GetMonsterListUseCase";
 
 export class CompositionRoot {
   private spellApi = SpellApiRepository.instance;
   private weaponApi = WeaponApiRepository.instance;
   private magicItemApi = MagicItemApiRepository.instance;
+  private monsterApi = MonsterApiRepository.instance;
 
   private getRawSpellList = new GetRawSpellListUseCase(this.spellApi);
   private getSpellList = new GetSpellListUseCase(this.spellApi);
@@ -28,11 +32,15 @@ export class CompositionRoot {
   private getRawMagicItemList = new GetRawMagicItemListUseCase(this.magicItemApi);
   private getMagicItemList = new GetMagicItemListUseCase(this.magicItemApi);
 
+  private getRawMonsterList = new GetRawMonsterListUseCase(this.monsterApi);
+  private getMonsterList = new GetMonsterListUseCase(this.monsterApi);
+
   getRawDataCases = () => {
     return {
       getSpellRawList: this.getRawSpellList,
       getWeaponRawList: this.getRawWeaponList,
-      getMagicItemRawList: this.getRawMagicItemList
+      getMagicItemRawList: this.getRawMagicItemList,
+      getMonsterRawList: this.getRawMonsterList
     }
   }
 
@@ -59,6 +67,12 @@ export class CompositionRoot {
   getMagicItemCases = () => {
     return {
       getMagicItemList: this.getMagicItemList,
+    }
+  };
+
+  getMonsterCases = () => {
+    return {
+      getMonsterList: this.getMonsterList,
     }
   };
 }

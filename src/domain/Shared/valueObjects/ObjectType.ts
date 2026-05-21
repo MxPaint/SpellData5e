@@ -43,7 +43,6 @@ export class ObjectType extends ValueObject<ObjectTypeProps> {
 
     typeList.forEach((element) => {
       if (type.match(element.type)) {
-        console.log('in');
         tempType = element.name;
         tempValue = type;
       }

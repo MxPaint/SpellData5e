@@ -33,6 +33,7 @@ export const MagicItemBlock = (props: Props) => {
     <div className={itemClass}>
       <div className='data-card'>
         <strong>{name}</strong>
+        <hr/>
         <div>
           <p>{typeFull}</p>
           <p>{readRarity(rarity)}</p>

@@ -53,16 +53,16 @@ export class MagicItemApiRepository implements MagicItemRepository{
   }
 
   mapMagicItems = (rawList: MagicItemRaw[]) => {
-      const list = rawList.map((element) => MagicItem.create({
-        id: element.name,
-        type: element.type,
-        rarity: element.rarity,
-        attunement: element.requires_attunement,
-        description: element.desc
-      }))
-    
-      return list;
-    }
+    const list = rawList.map((element) => MagicItem.create({
+      id: element.name,
+      type: element.type,
+      rarity: element.rarity,
+      attunement: element.requires_attunement,
+      description: element.desc
+    }))
+  
+    return list;
+  }
 
   async open5eFetch<T>(apiUrl: string): Promise<T> {
     const url = new URL(apiUrl);

@@ -12,6 +12,7 @@ export const WeaponList = (props: Props) => {
       {props.data.map((weapon) => (
         <WeaponLine key={weapon.id.value} weapon={weapon}/>
       ))}
+      <div className="foot"></div>
     </div>
   );
 }

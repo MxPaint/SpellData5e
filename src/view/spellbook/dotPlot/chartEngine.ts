@@ -21,7 +21,7 @@ export class SpellChartEngine {
     const levels = new Set(data.map(d => d.level.value));
     
     const width = 1000;
-    const height = schoolNames.length * 65;
+    const height = schoolNames.length * 55;
     const marginTop = 30;
     const marginRight = 10;
     const marginBottom = 10;
@@ -36,27 +36,51 @@ export class SpellChartEngine {
       .rangeRound([marginTop, height - marginBottom])
       .padding(1);
 
-    this.color = d3.scaleOrdinal<number, string, never>()
-      .domain(Array.from(levels))
-      .range(d3.quantize(d3.interpolateSpectral, Math.max(levels.size, 3)))
-      .unknown("#ccc");
+    // this.color = d3.scaleOrdinal<number, string, never>()
+    //   .domain(Array.from(levels))
+    //   .range(d3.quantize(d3.interpolateSpectral, Math.max(levels.size, 3)))
+    //   .unknown("#ccc");
+
+    //["#ffffcc","#ffefa5","#fedc7f","#febf5b","#fd9d43","#fc7034","#f23d26","#d91620","#b40325","#800026"]
+
+    this.color = d3.scaleOrdinal().range([
+      "#800026",
+      "#b40325",
+      "#d91620",
+      "#f23d26",
+      "#fc7034",
+      "#fd9d43",
+      "#febf5b",
+      "#fedc7f",
+      "#ffefa5",
+      "#ffffcc",
+    ]);
 
     this.svg
       .attr("width", width)
       .attr("height", height)
-      .attr("viewBox", `0 0 ${width} ${height}`);
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("fill", "darkred");
+
+    this.svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .attr("fill", "rgb(235, 186, 123)");
 
     this.svg.append("g")
       .attr("transform", `translate(0,${marginTop})`)
       .call(d3.axisTop(x).ticks(null))
       .call(g => g.append("text")
             .text("Number of spells")
-            .attr("fill", "currentColor")
+            .attr("fill", "darkred")
             .attr("transform", `translate(${width - marginRight},0)`)
             .attr("text-anchor", "end")
             .attr("dy", -22)
       )
-      .call(g => g.selectAll(".tick line").clone().attr("stroke-opacity", 0.1).attr("y2", height - marginBottom))
+      .call(g => g.selectAll(".tick line").clone()
+          .attr("stroke", "darkred")
+          .attr("stroke-opacity", 0.1)
+          .attr("y2", height - marginBottom))
       .call(g => g.selectAll(".domain").remove());
 
     this.g = this.svg.append("g")
@@ -65,16 +89,16 @@ export class SpellChartEngine {
         .selectAll()
         .data(Array.from(schools))
         .join("g")
+        .attr("fill", "darkred")
         .attr("class", "school-row")
         .attr("transform", ([school]) => `translate(0,${this.y(school)})`);
 
     this.g.append("line")
-        .attr("stroke", "#aaa")
+        .attr("stroke", "darkred")
         .attr("x1", ([, values]) => x(d3.min(values, d => d.count.value)!))
         .attr("x2", ([, values]) => x(d3.max(values, d => d.count.value)!));
 
     this.g.append("text")
-        .attr("class", "white-text")
         .attr("dy", "0.35em")
         .attr("x", ([, values]) => x(d3.min(values, d => d.count.value)!) - 6)
         .text(([school]) => school);
@@ -97,6 +121,8 @@ export class SpellChartEngine {
         .attr("cx", d => d.fx) // Use calculated simulation x (which matches fx)
         .attr("cy", d => d.y) // Use calculated simulation y (pushed apart)
         .attr("fill", d => this.color(d.level.value))
+        .attr("stroke", "#800026")
+        .attr("stroke-opacity", 0.5)
         .attr("r", 4)
         .on('mouseover', (event, d) => onHover(event, d))
         .on('mousemove', (event, d) => onHover(event, d))

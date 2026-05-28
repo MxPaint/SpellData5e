@@ -5,8 +5,8 @@
   transform: translate(10px, -10px);
   pointer-events: none;
   z-index: 100;
-  background: white;
+  background: bisque;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid brown;
   border-Radius: 4px
 }

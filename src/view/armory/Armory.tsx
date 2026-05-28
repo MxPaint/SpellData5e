@@ -19,8 +19,8 @@ export const Armory = (props: Props) => {
 
   if (listData.length === 0) {
     return (
-      <div className="loading">
-        <h3>- LOADING DATA -</h3>
+      <div className="block">
+        <h3 className='loading'>- LOADING DATA -</h3>
         <div>
           <span className="loader"></span>
         </div>
@@ -31,8 +31,8 @@ export const Armory = (props: Props) => {
   return (
     <div className='block'>
       <div className='header'>
-        <h3>Weapons</h3>
-        <div>
+        <h3>Armory</h3>
+        <div className='table-header'>
           <strong className='short'>Name</strong>
           <strong className='short'>Type</strong>
           <strong className='short'>Damage</strong>

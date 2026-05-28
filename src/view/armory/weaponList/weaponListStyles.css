@@ -1,15 +1,19 @@
 .weapon-list {
   width: 100%;
   overflow-y: auto;
-  border-top: 2px solid grey;
+  border-top: 2px solid brown;
 }
 
 .weapon-line {
-  border-bottom: 1px lightgray solid;
+  border-bottom: 1px rgba(139, 0, 0, 0.5) solid;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 5px;
+}
+
+.weapon-line:nth-of-type(odd) {
+  background-color: rgba(235, 187, 123, 0.25);
 }
 
 .weapon-line p {

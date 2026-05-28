@@ -1,0 +1,88 @@
+.spellDialog {
+  background-color: rgb(235, 186, 123);
+  border: 3px solid brown;
+  border-radius: 30px;
+  width: 900px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.spellDialog h3 {
+  border-width: 2px;
+}
+
+.spellDialog .body {
+  text-align: left;
+  max-height: 600px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.spellDialog .body h3 {
+  background-color: transparent;
+  border: none;
+}
+
+.spellDialog .list-block {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px solid brown;
+}
+
+.spellDialog .list-block li {
+  list-style: none;
+}
+
+.spellDialog .list-block div {
+  color: darkred;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: inherit;
+}
+
+.list-1 {
+  border-right: 2px solid brown;
+  flex: 2;
+}
+
+.list-1 p {
+  padding-left: 40px;
+}
+
+.list-2 {
+  flex: 3;
+}
+
+.spell-class-list {
+  border-bottom: 1px solid brown;
+}
+
+.hidden {
+  display: none;
+}
+
+.spellDialog .info-block p{
+  padding: 0 20px;
+}
+
+.spellDialog .info-block .description{
+  background-color: rgba(255, 228, 196, 0.25);
+}
+
+.spellDialog .high-level {
+  border-top: 2px solid brown;
+  padding-top: 20px;
+}
+
+.spellDialog .high-level strong {
+  margin-left: 40px;
+  margin-bottom: -10px;
+}
+
+.spellDialog .high-level p {
+  margin-top: -10px;
+}
+
+.spellDialog .high-level .description {
+  background-color: transparent;
+}

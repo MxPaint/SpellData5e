@@ -1,4 +1,5 @@
 import type { MagicItem } from "../../../domain/MagicItems/entities/MagicItem";
+import { MarkdownRenderer } from "../../markdownRenderer/MarkdownRenderer";
 
 interface Props {
   magicItem: MagicItem;
@@ -40,7 +41,7 @@ export const MagicItemBlock = (props: Props) => {
           <p>{readAttunement(attunement)}</p>
         </div>
       </div>
-      <p className='description'>{description}</p>
+      <MarkdownRenderer content={description}/>
     </div>
   );
 }

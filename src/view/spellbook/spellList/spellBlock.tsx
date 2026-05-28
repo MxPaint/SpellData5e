@@ -1,4 +1,6 @@
+import { useState } from "react";
 import type { Spell } from "../../../domain/Spells/entities/Spell"
+import { SpellDialog } from "../spellDialog/spellDialog";
 
 interface Props {
   spell: Spell;
@@ -10,6 +12,8 @@ export const SpellBlock = (props: Props) => {
   const school = props.spell.school.value;
   const lists = props.spell.classList;
 
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+
   const classList = () => {
     return(
       <div className='class-list'>
@@ -20,6 +24,7 @@ export const SpellBlock = (props: Props) => {
     )
   }
 
+
   const styles = `spell-block ${school}`;
 
   return (
@@ -29,6 +34,14 @@ export const SpellBlock = (props: Props) => {
       <hr/>
       <strong>Available for:</strong>
       {classList()}
+      <button onClick={() => setIsDialogOpen(true)}>
+        <strong>+</strong>
+      </button>
+      <SpellDialog 
+        isOpen={isDialogOpen} 
+        onClose={() => setIsDialogOpen(false)} 
+        spell={props.spell}
+      />
     </div>
   )
 }

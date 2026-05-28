@@ -1,0 +1,121 @@
+.monsterDialog {
+  background-color: rgb(235, 186, 123);
+  border: 3px solid brown;
+  border-radius: 30px;
+  width: 900px;
+  padding: 0;
+  padding-top: 10px;
+  color: darkred;
+  font-size: small;
+}
+
+.monster-type {
+  text-align: center;
+  border-top: 2px solid brown;
+  background-color: rgba(255, 228, 196, 0.25);
+}
+
+.monsterDialog .body {
+  text-align: left;
+  max-height: 600px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  border-top: 2px solid brown;
+}
+
+.dialog-m-general {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+
+.dialog-m-general div {
+  flex: 1;
+}
+
+.monsterDialog li {
+  list-style: none;
+}
+
+.monster-general {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.compound {
+  display: flex;
+  flex-direction: row;
+}
+
+.monster-speed-list {
+  display: flex;
+}
+
+.monster-speed-list div {
+  display: flex;
+}
+
+.monster-speed-list div p {
+  margin-left: 10px;
+}
+
+.cr {
+  margin-left: 40px;
+}
+
+.general-block, .skills-block {
+  border-bottom: 1px solid brown;
+  padding-left: 40px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.table-block {
+  padding-right: 40px;
+  border-left: 2px solid brown;
+}
+
+.monsterDialog table {
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.dialog-m-ability-block {
+  padding-bottom: 20px;
+}
+
+.dialog-m-ability-block h4{
+  border-top: 2px solid brown;
+  border-bottom: 2px solid brown;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding-left: 25px;
+  font-size: medium;
+  background-color: rgba(255, 228, 196, 0.25);
+}
+
+.dialog-m-ability-block p {
+  display: inline;
+}
+
+.dialog-m-ability-block li {
+  padding-bottom: 10px;
+}
+
+.dialog-m-ability-block .description {
+  padding-top: 0;
+}
+
+.legendary-desc {
+  margin: 0 40px 10px;
+}
+
+.action-block {
+  margin-left: 20px;
+}
+
+.bold-text {
+  font-weight: bold;
+}

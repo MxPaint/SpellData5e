@@ -9,7 +9,7 @@ import { Bestiary } from './view/bestiary/Bestiary.tsx';
 export default function App() {
   const root = new CompositionRoot();
   const [loading, setLoading] = useState<boolean>(true);
-  const [spellView, setSpellView] = useState<number>(3);
+  const [spellView, setSpellView] = useState<number>(0);
   
   useEffect(() => {
     const {
@@ -20,20 +20,18 @@ export default function App() {
     } = root.getRawDataCases();
 
     getSpellRawList.execute().then(() => {
-      getWeaponRawList.execute().then(() => {
-        getMagicItemRawList.execute().then(() => {
-          getMonsterRawList.execute().then(() => {
-            setLoading(false);
-          })
-        });
-      });
+      getWeaponRawList.execute();
+      getMagicItemRawList.execute();
+      getMonsterRawList.execute();
+      setLoading(false);
     });
-  });
+
+  }, []);
 
   if (loading) {
     return (
-      <div className="loading">
-        <h3>- LOADING DATA -</h3>
+      <div className="block">
+        <h3 className='loading'>- LOADING DATA -</h3>
         <div>
           <span className="loader"></span>
         </div>

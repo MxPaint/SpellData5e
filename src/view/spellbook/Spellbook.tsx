@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { CompositionRoot } from "../../compositionRoot";
 import type { Spell } from "../../domain/Spells/entities/Spell";
 import type { SpellGroup } from "../../domain/Spells/entities/SpellGroup";
@@ -8,6 +8,7 @@ import { School } from "../../domain/Shared/valueObjects/School";
 import { SpellDotPlot } from "./dotPlot/spellDotPlot";
 import { listFiltered } from "./spellList/listFilter";
 import { SpellList } from "./spellList/spellList";
+import { spellOrderList } from "./spellList/spellOrderList";
 
 export type SortOrder = 'default' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | 'total';
 
@@ -33,10 +34,12 @@ export const Spellbook = (props: Props) => {
   const [sortType, setSortType] = useState<SortOrder>('default');
   const [sortedList, setSortedList] = useState<School[]>(defaultList);
 
-  const [filteredList, setFilteredList] = useState<Spell[]>([]);
   const [levelFilter, setLevelFilter] = useState<string>('all');
   const [schoolFilter, setSchoolFilter] = useState<string>('all');
   const [classFilter, setClassFilter] = useState<string>('all');
+
+  const [listOrder, setListOrder] = useState<string>('Name');
+  const [ascOrder, setAscOrder] = useState<boolean>(true);
 
   useEffect(() => {
     const {getOrderLevel, getOrderTotal} = props.root.getSpellOrderCases();
@@ -76,29 +79,34 @@ export const Spellbook = (props: Props) => {
   }, [sortType]);
 
   useEffect(() => {
-
-    setFilteredList(listFiltered({
-      list: listData,
-      level: levelFilter === 'all' ? levelFilter : Level.create(parseInt(levelFilter)),
-      school: schoolFilter === 'all' ? schoolFilter : School.create(schoolFilter),
-      characterClass: classFilter === 'all' ? classFilter : CharacterClass.create(classFilter)
-    }));
-
-  }, [levelFilter, schoolFilter, classFilter]);
-  
-  useEffect(() => {
     const {getSpellList, getSpellGroups} = props.root.getSpellDataCases();
 
     setListData(getSpellList.execute());
     setChartData(getSpellGroups.execute());
-    setFilteredList(getSpellList.execute());
     
   }, []);
 
+  const filteredList = useMemo(() => {
+    return listFiltered({
+      list: listData,
+      level: levelFilter === 'all' ? levelFilter : Level.create(parseInt(levelFilter)),
+      school: schoolFilter === 'all' ? schoolFilter : School.create(schoolFilter),
+      characterClass: classFilter === 'all' ? classFilter : CharacterClass.create(classFilter)
+    });
+  }, [levelFilter, schoolFilter, classFilter, listData]);
+
+  const orderedList = useMemo(() => {
+    return spellOrderList({
+      list: [...filteredList],
+      order: listOrder,
+      ascending: ascOrder
+    })
+  }, [filteredList, listOrder, ascOrder]);
+
   if (chartData.length === 0) {
     return (
-      <div className="loading">
-        <h3>- LOADING DATA -</h3>
+      <div className="block">
+        <h3 className='loading'>- LOADING DATA -</h3>
         <div>
           <span className="loader"></span>
         </div>
@@ -108,9 +116,12 @@ export const Spellbook = (props: Props) => {
 
   return (
     <div className="block">
+      <div className='header'>
+        <h3>Spellbook</h3>
+      </div>
       <div className='fixed-content'>
         <div className='graph-order'>
-          <p>Order by:</p>
+          <p>Graph order: </p>
           <select name="order" defaultValue={"default"} onChange={(e) => setSortType(e.target.value as SortOrder)}>
             <option value="default">Default</option>
             <option value="0">Cantrips - lvl 0</option>
@@ -127,9 +138,23 @@ export const Spellbook = (props: Props) => {
           </select>
         </div>
         <SpellDotPlot data={chartData} sortOrder={sortedList}/>
-        <div>
-          <p>List filters:</p>
-          <div className='filters-div'>
+      </div>
+      <div className='spell-list-header'>
+        <div className='filters-div'>
+          <div>
+            <p>List order: </p>
+            <select name="order" defaultValue={"Name"} onChange={(e) => setListOrder(e.target.value)}>
+              <option value="Name">Name</option>
+              <option value="Level">Level</option>
+              <option value="School">School</option>
+            </select>
+            <select name="asc-desc" defaultValue={"Asc"} onChange={(e) => e.target.value === 'Asc' ? setAscOrder(true) : setAscOrder(false)}>
+              <option value="Asc">asc</option>
+              <option value="Desc">desc</option>
+            </select>
+          </div>
+          <div>
+            <p>List filters: </p>
             <select name="level" defaultValue={"all"} onChange={(e) => setLevelFilter(e.target.value)}>
               <option value="all">All levels</option>
               <option value="0">Cantrips - lvl 0</option>
@@ -167,7 +192,7 @@ export const Spellbook = (props: Props) => {
           </div>
         </div>
       </div>
-      <SpellList data={filteredList}/>
+      <SpellList data={orderedList}/>
     </div>
   );
 }

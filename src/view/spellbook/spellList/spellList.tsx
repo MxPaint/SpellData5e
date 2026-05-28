@@ -8,10 +8,13 @@ interface Props{
 
 export const SpellList = (props: Props) => {
   return (
-    <div className="list-block">
-      {props.data.map((spell) => (
-        <SpellBlock key={spell.id.value} spell={spell}/>
-      ))}
+    <div className="spell-data">
+      <div className="list-block">
+        {props.data.map((spell) => (
+          <SpellBlock key={spell.id.value} spell={spell}/>
+        ))}
+      </div>
+      <div className='foot'></div>
     </div>
   );
 }

@@ -1,52 +1,71 @@
-.monster-list {
-  width: 100%;
-  overflow-y: auto;
-  border-top: 2px solid grey;
-  display: flex;
-  flex-direction: row;
+.monster-order {
+  margin-bottom: 10px;
   justify-content: center;
 }
 
+.monster-data {
+  width: 100%;
+  overflow-y: auto;
+  border-top: 2px solid brown;
+  background-color: bisque;
+}
+
+.monster-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 20px;
+}
+
 .monster-column {
-  width: 85%;
+  width: 90%;
   display: flex;
   flex-direction: column;
 }
 
 .monster-block {
-  padding: 10px;
   height: fit-content;
   width: inherit;
   grid-row: auto;
   border-radius: 10px;
   border: 2px solid brown;
-  box-shadow: 0px 5px 5px grey;
-  margin: 12px 0;
+  box-shadow: 0px 5px 5px rgba(235, 187, 123, 0.784);
+  margin: 10px 0;
+  padding-top: 5px;
   background-color: rgb(235, 186, 123);
   color: darkred;
   font-size: medium;
 }
 
+.monster-block h2 {
+  color: darkred;
+  font-size: 20px;
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+.foot {
+  height: 50px;
+  width: 100%;
+  border-top: 2px solid darkred;
+  margin-top: 40px;
+}
+
 .left-block {
-  margin: 12px 0 12px auto;
+  margin: 10px 0 10px auto;
 }
 
 .center-block {
-  margin: 12px auto;
+  margin: 10px auto;
 }
 
 .right-block {
-  margin: 12px auto 12px 0;
-}
-
-strong {
-  font-size: large;
-  width: 100%;
+  margin: 10px auto 10px 0;
 }
 
 .monster-list hr{
   border-color: brown;
-  margin: 0;
+  margin: 2px 0 0;
 }
 
 .monster-card {
@@ -56,7 +75,7 @@ strong {
 }
 
 .monster-card p {
-  margin: 0 5px;
+  margin: 0 10px;
 }
 
 .monster-info {
@@ -71,7 +90,7 @@ strong {
 }
 
 .stats {
-  margin-top: 10px;
+  margin: 8px 0;
   height: 100%;
   width: 50%;
   display: flex;
@@ -79,15 +98,22 @@ strong {
 }
 
 table {
-  border: 2px solid brown;
-  border-collapse: collapse;
+  background-color: darkred;
+  border-radius: 8px;
+  padding: 1px;
+}
+.table-start {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.table-end {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 td {
-  border: 1px solid brown;
-  border-collapse: collapse;
   width: 30px;
   padding: 0 5px;
-  background-color: rgb(246, 217, 179);
+  background-color: rgb(248, 209, 162);
 }
 
 ul {
@@ -100,4 +126,30 @@ ul {
 
 .small-text {
   font-size: small;
+}
+
+.monster-block-button {
+  width: 100%;
+  margin: 0;
+  margin-top: auto;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border: none;
+  border-top: 2px solid brown;
+  padding-bottom: 6px;
+}
+
+.monster-block-button:hover {
+  border: none;
+  border-top: 2px solid brown;
+}
+
+.monster-block-button strong {
+  color: white;
+}
+
+.monster-block-button:hover strong {
+  color: darkred;
 }

@@ -15,14 +15,18 @@ interface SpellRaw {
   level_int: number;
   school: string;
   spell_lists: string[];
+  desc: string;
+  higher_level: string;
+  range: string;
+  requires_verbal_components: boolean;
+  requires_somatic_components: boolean;
+  requires_material_components: boolean;
+  material: string;
+  can_be_cast_as_ritual: boolean;
+  duration: string;
+  requires_concentration: boolean;
+  casting_time: string;
 }
-
-/*
-`https://api.open5e.com/v1/spells/?level_int=${level.value}&school=${school}&document__slug=wotc-srd` group order level
-`https://api.open5e.com/v1/spells/?school=${school}&document__slug=wotc-srd` group order total
-`https://api.open5e.com/v1/spells/?level_int=${level}&school=${school}&document__slug=wotc-srd` spell groups
-`https://api.open5e.com/v1/spells/?document__slug=wotc-srd&fields=name,level_int,school,spell_lists` spell list
-*/
 
 const levelList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const schoolList = ['Abjuration', 'Conjuration', 'Divination', 'Enchantment', 'Evocation', 'Illusion', 'Necromancy', 'Transmutation'];
@@ -97,7 +101,7 @@ export class SpellApiRepository implements SpellRepository{
   async getRawSpellList() {
     
     let allRawSpells: SpellRaw[] = [];
-    let nextUrl: string | null = 'https://api.open5e.com/v1/spells/?document__slug=wotc-srd&fields=name,level_int,school,spell_lists';
+    let nextUrl: string | null = 'https://api.open5e.com/v1/spells/?document__slug=wotc-srd&fields=name,level_int,school,spell_lists,desc,higher_level,range,requires_verbal_components,requires_somatic_components,requires_material_components,material,can_be_cast_as_ritual,duration,requires_concentration,casting_time';
 
     while (nextUrl) {
       const data: Open5eResponse<SpellRaw> = await this.open5eFetch<Open5eResponse<SpellRaw>>(nextUrl);
@@ -115,7 +119,18 @@ export class SpellApiRepository implements SpellRepository{
       id: element.name,
       level: element.level_int,
       school: element.school,
-      classList: element.spell_lists
+      classList: element.spell_lists,
+      description: element.desc,
+      highLevel: element.higher_level === '' ? 'no' : element.higher_level,
+      range: element.range,
+      vComponents: element.requires_verbal_components,
+      sComponents: element.requires_somatic_components,
+      mComponents: element.requires_material_components,
+      materialComponents: !element.material ? 'no' : element.material,
+      ritual: element.can_be_cast_as_ritual,
+      duration: element.duration,
+      concentration: element.requires_concentration,
+      castingTime: element.casting_time
     }))
   
     return list;

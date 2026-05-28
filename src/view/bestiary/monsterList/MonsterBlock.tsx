@@ -1,5 +1,7 @@
+import { useState } from "react";
 import type { Monster } from "../../../domain/Monsters/entities/Monster";
 import type { SpeedBlock } from "../../../domain/Shared/valueObjects/SpeedBlock";
+import { MonsterDialog } from "../monsterDialog/monsterDialog";
 
 interface Props {
   monster: Monster;
@@ -16,6 +18,8 @@ export const MonsterBlock = (props: Props) => {
   const speed = props.monster.speed;
   const statBlock = props.monster.statBlock;
   const cr = props.monster.cr.value;
+
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   const readSpeed = (speed: SpeedBlock) => {
 
@@ -60,7 +64,7 @@ export const MonsterBlock = (props: Props) => {
 
   return (
     <div className={className}>
-      <strong>{name}</strong>
+      <h2>{name}</h2>
       <hr/>
       <div className='monster-card'>
         <div className='monster-info'>
@@ -77,39 +81,47 @@ export const MonsterBlock = (props: Props) => {
           <table>
             <tbody>
               <tr>
-                <td>STR</td>
-                <td className='text-right'>{statBlock.str.value}</td>
-                <td className='text-right'>{modPlus(statBlock.str.getMod())}{statBlock.str.getMod()}</td>
+                <td className='table-start'>STR</td>
+                <td className='text-right'>{statBlock.str.stat}</td>
+                <td className='text-right table-end'>{modPlus(statBlock.str.getMod())}{statBlock.str.getMod()}</td>
               </tr>
               <tr>
-                <td>DEX</td>
-                <td className='text-right'>{statBlock.dex.value}</td>
-                <td className='text-right'>{modPlus(statBlock.dex.getMod())}{statBlock.dex.getMod()}</td>
+                <td className='table-start'>DEX</td>
+                <td className='text-right'>{statBlock.dex.stat}</td>
+                <td className='text-right table-end'>{modPlus(statBlock.dex.getMod())}{statBlock.dex.getMod()}</td>
               </tr>
               <tr>
-                <td>CON</td>
-                <td className='text-right'>{statBlock.con.value}</td>
-                <td className='text-right'>{modPlus(statBlock.con.getMod())}{statBlock.con.getMod()}</td>
+                <td className='table-start'>CON</td>
+                <td className='text-right'>{statBlock.con.stat}</td>
+                <td className='text-right table-end'>{modPlus(statBlock.con.getMod())}{statBlock.con.getMod()}</td>
               </tr>
               <tr>
-                <td>INT</td>
-                <td className='text-right'>{statBlock.int.value}</td>
-                <td className='text-right'>{modPlus(statBlock.int.getMod())}{statBlock.int.getMod()}</td>
+                <td className='table-start'>INT</td>
+                <td className='text-right'>{statBlock.int.stat}</td>
+                <td className='text-right table-end'>{modPlus(statBlock.int.getMod())}{statBlock.int.getMod()}</td>
               </tr>
               <tr>
-                <td>WIS</td>
-                <td className='text-right'>{statBlock.wis.value}</td>
-                <td className='text-right'>{modPlus(statBlock.wis.getMod())}{statBlock.wis.getMod()}</td>
+                <td className='table-start'>WIS</td>
+                <td className='text-right'>{statBlock.wis.stat}</td>
+                <td className='text-right table-end'>{modPlus(statBlock.wis.getMod())}{statBlock.wis.getMod()}</td>
               </tr>
               <tr>
-                <td>CHA</td>
-                <td className='text-right'>{statBlock.cha.value}</td>
-                <td className='text-right'>{modPlus(statBlock.cha.getMod())}{statBlock.cha.getMod()}</td>
+                <td className='table-start'>CHA</td>
+                <td className='text-right'>{statBlock.cha.stat}</td>
+                <td className='text-right table-end'>{modPlus(statBlock.cha.getMod())}{statBlock.cha.getMod()}</td>
               </tr>  
             </tbody>
           </table>
         </div>
       </div>
+      <button className='monster-block-button' onClick={() => setIsDialogOpen(true)}>
+        <strong>+</strong>
+      </button>
+      <MonsterDialog 
+        isOpen={isDialogOpen} 
+        onClose={() => setIsDialogOpen(false)} 
+        monster={props.monster}
+      />
     </div>
   );
 

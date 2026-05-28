@@ -18,7 +18,13 @@ export interface StatBlockData {
   con: number;
   int: number;
   wis: number;
-  cha: number; 
+  cha: number;
+  strSave: number;
+  dexSave: number;
+  conSave: number;
+  intSave: number;
+  wisSave: number;
+  chaSave: number; 
 }
 
 export class StatBlock extends Entity {
@@ -41,23 +47,23 @@ export class StatBlock extends Entity {
 
   public static create(data: StatBlockData): StatBlock {
     const id = Id.generate();
-    const str = Stat.create(data.str);
-    const dex = Stat.create(data.dex);
-    const con = Stat.create(data.con);
-    const int = Stat.create(data.int);
-    const wis = Stat.create(data.wis);
-    const cha = Stat.create(data.cha);
+    const str = Stat.create(data.str, data.strSave);
+    const dex = Stat.create(data.dex, data.dexSave);
+    const con = Stat.create(data.con, data.conSave);
+    const int = Stat.create(data.int, data.intSave);
+    const wis = Stat.create(data.wis, data.wisSave);
+    const cha = Stat.create(data.cha, data.strSave);
 
     return new StatBlock({id, str, dex, con, int, wis, cha});
   }
 
   public update(data: StatBlockData) {
-    this.str = Stat.create(data.str);
-    this.dex = Stat.create(data.dex);
-    this.con = Stat.create(data.con);
-    this.int = Stat.create(data.int);
-    this.wis = Stat.create(data.wis);
-    this.cha = Stat.create(data.cha);
+    this.str = Stat.create(data.str, data.strSave);
+    this.dex = Stat.create(data.dex, data.dexSave);
+    this.con = Stat.create(data.con, data.conSave);
+    this.int = Stat.create(data.int, data.intSave);
+    this.wis = Stat.create(data.wis, data.wisSave);
+    this.cha = Stat.create(data.cha, data.strSave);
   }
 
 }

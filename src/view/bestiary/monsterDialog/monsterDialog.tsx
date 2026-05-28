@@ -22,12 +22,11 @@ export const MonsterDialog = (props: DialogProps) => {
   const hitDice = props.monster.hitDice.value;
   const speed = props.monster.speed;
   const statBlock = props.monster.statBlock;
-  const perception = props.monster.perception.value;
   // skills
-  const dmgVuln = props.monster.dmgVuln.value;
-  const dmgResist = props.monster.dmgResist.value;
-  const dmgImm = props.monster.dmgImm.value;
-  const conditionImm = props.monster.conditionImm.value;
+  const dmgVuln = props.monster.dmgVuln.value === 'no' ? '' : props.monster.dmgVuln.value;
+  const dmgResist = props.monster.dmgResist.value === 'no' ? '' : props.monster.dmgResist.value;
+  const dmgImm = props.monster.dmgImm.value === 'no' ? '' : props.monster.dmgImm.value;
+  const conditionImm = props.monster.conditionImm.value === 'no' ? '' : props.monster.conditionImm.value;
   const senses = props.monster.senses.value === 'no' ? '' : props.monster.senses.value;
   const languages = props.monster.languages.value === 'no' ? '' : props.monster.languages.value;
   const cr = props.monster.cr.value;
@@ -104,6 +103,38 @@ export const MonsterDialog = (props: DialogProps) => {
     }
 
     return <p>Languages: {languages}</p>;
+  }
+
+  const getVulnerabilities = () => {
+    if(dmgVuln === '') {
+      return <p className='hidden'></p>
+    }
+
+    return <p>Vulnerabilities: {dmgVuln}</p>;
+  }
+
+  const getResistances = () => {
+    if(dmgResist === '') {
+      return <p className='hidden'></p>
+    }
+
+    return <p>Resistances: {dmgResist}</p>;
+  }
+
+  const getImmunities = () => {
+    if(dmgImm === '') {
+      return <p className='hidden'></p>
+    }
+
+    return <p>Immunities: {dmgImm}</p>;
+  }
+
+  const getConditions = () => {
+    if(conditionImm === '') {
+      return <p className='hidden'></p>
+    }
+
+    return <p>Condition immunities: {conditionImm}</p>;
   }
 
   const getTraits = () => {
@@ -249,7 +280,10 @@ export const MonsterDialog = (props: DialogProps) => {
               </div>
             </div>
             <div className='skills-block'>
-              <div>Perception {perception}</div>
+              {getVulnerabilities()}
+              {getResistances()}
+              {getImmunities()}
+              {getConditions()}
               {getSkills()}
               {getSenses()}
               {getLanguages()}

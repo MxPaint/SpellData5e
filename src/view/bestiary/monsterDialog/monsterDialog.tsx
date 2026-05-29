@@ -22,7 +22,7 @@ export const MonsterDialog = (props: DialogProps) => {
   const hitDice = props.monster.hitDice.value;
   const speed = props.monster.speed;
   const statBlock = props.monster.statBlock;
-  // skills
+  const skills = props.monster.skills.skills;
   const dmgVuln = props.monster.dmgVuln.value === 'no' ? '' : props.monster.dmgVuln.value;
   const dmgResist = props.monster.dmgResist.value === 'no' ? '' : props.monster.dmgResist.value;
   const dmgImm = props.monster.dmgImm.value === 'no' ? '' : props.monster.dmgImm.value;
@@ -86,7 +86,16 @@ export const MonsterDialog = (props: DialogProps) => {
   }
 
   const getSkills = () => {
-    return <p className='hidden'></p>
+    if(skills.length === 0) {
+      return <p className='hidden'></p>
+    }
+
+    let text = '';
+    skills.map((skill) => {
+      text += skill.name + ' ' + modPlus(skill.value) + ', '
+    })
+
+    return <p><strong>Skills:</strong> {text}</p>;
   }
 
   const getSenses = () => {
@@ -94,7 +103,7 @@ export const MonsterDialog = (props: DialogProps) => {
       return <p className='hidden'></p>
     }
 
-    return <p>Senses: {senses}</p>;
+    return <p><strong>Senses:</strong> {senses}</p>;
   }
 
   const getLanguages = () => {
@@ -102,7 +111,7 @@ export const MonsterDialog = (props: DialogProps) => {
       return <p className='hidden'></p>
     }
 
-    return <p>Languages: {languages}</p>;
+    return <p><strong>Languages:</strong> {languages}</p>;
   }
 
   const getVulnerabilities = () => {
@@ -110,7 +119,7 @@ export const MonsterDialog = (props: DialogProps) => {
       return <p className='hidden'></p>
     }
 
-    return <p>Vulnerabilities: {dmgVuln}</p>;
+    return <p><strong>Vulnerabilities:</strong> {dmgVuln}</p>;
   }
 
   const getResistances = () => {
@@ -118,7 +127,7 @@ export const MonsterDialog = (props: DialogProps) => {
       return <p className='hidden'></p>
     }
 
-    return <p>Resistances: {dmgResist}</p>;
+    return <p><strong>Resistances:</strong> {dmgResist}</p>;
   }
 
   const getImmunities = () => {
@@ -126,7 +135,7 @@ export const MonsterDialog = (props: DialogProps) => {
       return <p className='hidden'></p>
     }
 
-    return <p>Immunities: {dmgImm}</p>;
+    return <p><strong>Immunities:</strong> {dmgImm}</p>;
   }
 
   const getConditions = () => {
@@ -134,7 +143,7 @@ export const MonsterDialog = (props: DialogProps) => {
       return <p className='hidden'></p>
     }
 
-    return <p>Condition immunities: {conditionImm}</p>;
+    return <p><strong>Condition immunities:</strong> {conditionImm}</p>;
   }
 
   const getTraits = () => {
@@ -147,9 +156,7 @@ export const MonsterDialog = (props: DialogProps) => {
         <h4>Traits</h4>
         <div className='action-block'>
           {specialAbilities.map((item) => (
-            <p>
-              <MarkdownRenderer content={'**' + item.name + ':** ' + item.desc}/>
-            </p>
+            <MarkdownRenderer content={'**' + item.name + ':** ' + item.desc} key={item.name}/>
           ))}
         </div>
       </div>
@@ -168,9 +175,7 @@ export const MonsterDialog = (props: DialogProps) => {
         <h4>Actions</h4>
         <div className='action-block'>
           {actions.map((item) => (
-            <p>
-              <MarkdownRenderer content={'**' + item.name + ':** ' + item.desc}/>
-            </p>
+            <MarkdownRenderer content={'**' + item.name + ':** ' + item.desc} key={item.name}/>
           ))}
         </div>
       </div>
@@ -189,9 +194,7 @@ export const MonsterDialog = (props: DialogProps) => {
         <h4>Bonus actions</h4>
         <div className='action-block'>
           {bonusActions.map((item) => (
-            <p>
-              <MarkdownRenderer content={'**' + item.name + ':** ' + item.desc}/>
-            </p>
+            <MarkdownRenderer content={'**' + item.name + ':** ' + item.desc} key={item.name}/>
           ))}
         </div>
       </div>
@@ -210,9 +213,7 @@ export const MonsterDialog = (props: DialogProps) => {
         <h4>Reactions</h4>
         <div className='action-block'>
           {reactions.map((item) => (
-            <p>
-              <MarkdownRenderer content={'**' + item.name + ':** ' + item.desc}/>
-            </p>
+            <MarkdownRenderer content={'**' + item.name + ':** ' + item.desc} key={item.name}/>
           ))}
         </div>
       </div>
@@ -234,9 +235,7 @@ export const MonsterDialog = (props: DialogProps) => {
         </div>
         <div className='action-block'>
           {legendaryActions.map((item) => (
-            <p key={item.name}>
-              <MarkdownRenderer content={'**' + item.name + ':** ' + item.desc}/>
-            </p>
+            <MarkdownRenderer content={'**' + item.name + ':** ' + item.desc} key={item.name}/>
           ))}
         </div>
       </div>
@@ -270,12 +269,12 @@ export const MonsterDialog = (props: DialogProps) => {
           <div className='monster-general'>
             <div className='general-block'>
               <div className='compound'>
-                <div>AC {ac} {acDesc}</div>
-                <div>Initiative {modPlus(statBlock.dex.getMod())}</div>
+                <div><strong>AC</strong> {ac} {acDesc}</div>
+                <div><strong>Initiative</strong> {modPlus(statBlock.dex.getMod())}</div>
               </div>
-              <div>HP {hitPoints} {'(' + hitDice + ')'}</div>
+              <div><strong>HP</strong> {hitPoints} {'(' + hitDice + ')'}</div>
               <div className='monster-speed-list'>
-                <p>Speed:  </p>
+                <p><strong>Speed:</strong>  </p>
                 {getSpeed()}
               </div>
             </div>

@@ -31,31 +31,38 @@ export interface SkillsProps {
 }
 
 export class Skills extends ValueObject<SkillsProps> {
-  get skills(): Skill[] { return this.props.skills; }
+  get skills(): Skill[] { 
+    const skillList: Skill[] = [];
+    this.props.skills.map((item) => {
+      if(item.value !== 0) {
+        skillList.push(item);
+      }
+    })
+    return skillList; }
 
   private constructor(props: SkillsProps) { super(props); }
 
   public static create(skills: SkillGroup): Skills {
 
     const skillList: Skill[] = [
-      {name: 'acrobatics', value: skills.acrobatics},
-      {name: 'animalHandling', value: skills.animalHandling},
-      {name: 'arcana', value: skills.arcana},
-      {name: 'athletics', value: skills.athletics},
-      {name: 'deception', value: skills.deception},
-      {name: 'history', value: skills.history},
-      {name: 'insight', value: skills.insight},
-      {name: 'intimidation', value: skills.intimidation},
-      {name: 'investigation', value: skills.investigation},
-      {name: 'medicine', value: skills.medicine},
-      {name: 'nature', value: skills.nature},
-      {name: 'perception', value: skills.perception},
-      {name: 'performance', value: skills.performance},
-      {name: 'persuasion', value: skills.persuasion},
-      {name: 'religion', value: skills.religion},
-      {name: 'sleightOfHand', value: skills.sleightOfHand},
-      {name: 'stealth', value: skills.stealth},
-      {name: 'survival', value: skills.survival}
+      {name: 'Acrobatics', value: skills.acrobatics},
+      {name: 'AnimalHandling', value: skills.animalHandling},
+      {name: 'Arcana', value: skills.arcana},
+      {name: 'Athletics', value: skills.athletics},
+      {name: 'Deception', value: skills.deception},
+      {name: 'History', value: skills.history},
+      {name: 'Insight', value: skills.insight},
+      {name: 'Intimidation', value: skills.intimidation},
+      {name: 'Investigation', value: skills.investigation},
+      {name: 'Medicine', value: skills.medicine},
+      {name: 'Nature', value: skills.nature},
+      {name: 'Perception', value: skills.perception},
+      {name: 'Performance', value: skills.performance},
+      {name: 'Persuasion', value: skills.persuasion},
+      {name: 'Religion', value: skills.religion},
+      {name: 'SleightOfHand', value: skills.sleightOfHand},
+      {name: 'Stealth', value: skills.stealth},
+      {name: 'Survival', value: skills.survival}
     ];
 
     return new Skills({skills: skillList});

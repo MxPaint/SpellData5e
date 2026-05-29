@@ -4,6 +4,7 @@ import { Id } from "../../Shared/valueObjects/Id";
 import { MonsterSize } from "../../Shared/valueObjects/MonsterSize";
 import { MonsterType } from "../../Shared/valueObjects/MonsterType";
 import { PositiveNumber } from "../../Shared/valueObjects/PositiveNumber";
+import { Skills } from "../../Shared/valueObjects/Skills";
 import { SpeedBlock } from "../../Shared/valueObjects/SpeedBlock";
 import { TextField } from "../../Shared/valueObjects/TextField";
 import { StatBlock } from "./StatBlock";
@@ -19,8 +20,7 @@ export interface MonsterObjectData {
   hitDice: TextField;
   speed: SpeedBlock;
   statBlock: StatBlock;
-  perception: PositiveNumber;
-  // skills
+  skills: Skills;
   dmgVuln: TextField;
   dmgResist: TextField;
   dmgImm: TextField;
@@ -63,8 +63,24 @@ export interface MonsterData {
   intSave: number;
   wisSave: number;
   chaSave: number;
+  acrobatics: number;
+  animalHandling: number;
+  arcana: number;
+  athletics: number;
+  deception: number;
+  history: number;
+  insight: number;
+  intimidation: number;
+  investigation: number;
+  medicine: number;
+  nature: number;
   perception: number;
-  // skills
+  performance: number;
+  persuasion: number;
+  religion: number;
+  sleightOfHand: number;
+  stealth: number;
+  survival: number;
   dmgVuln: string;
   dmgResist: string;
   dmgImm: string;
@@ -90,8 +106,7 @@ export class Monster extends Entity {
   public hitDice: TextField;
   public speed: SpeedBlock;
   public statBlock: StatBlock;
-  public perception: PositiveNumber;
-  // skills
+  public skills: Skills;
   public dmgVuln: TextField;
   public dmgResist: TextField;
   public dmgImm: TextField;
@@ -117,7 +132,7 @@ export class Monster extends Entity {
     this.hitDice = data.hitDice;
     this.speed = data.speed;
     this.statBlock = data.statBlock;
-    this.perception = data.perception;
+    this.skills = data.skills;
     this.dmgVuln = data.dmgVuln;
     this.dmgResist = data.dmgResist;
     this.dmgImm = data.dmgImm;
@@ -164,8 +179,26 @@ export class Monster extends Entity {
       wisSave: data.wisSave,
       chaSave: data.chaSave
     });
-    const perception = PositiveNumber.create(data.perception);
-    // skills
+    const skills = Skills.create({
+      acrobatics: data.acrobatics,
+      animalHandling: data.animalHandling,
+      arcana: data.arcana,
+      athletics: data.athletics,
+      deception: data.deception,
+      history: data.history,
+      insight: data.insight,
+      intimidation: data.intimidation,
+      investigation: data.investigation,
+      medicine: data.medicine,
+      nature: data.nature,
+      perception: data.perception,
+      performance: data.performance,
+      persuasion: data.persuasion,
+      religion: data.religion,
+      sleightOfHand: data.sleightOfHand,
+      stealth: data.stealth,
+      survival: data.survival,
+    });
     const dmgVuln = TextField.create(data.dmgVuln);
     const dmgResist = TextField.create(data.dmgResist);
     const dmgImm = TextField.create(data.dmgImm);
@@ -191,7 +224,7 @@ export class Monster extends Entity {
       hitDice,
       speed,
       statBlock,
-      perception,
+      skills,
       dmgVuln,
       dmgResist,
       dmgImm,
@@ -238,8 +271,26 @@ export class Monster extends Entity {
       wisSave: data.wisSave,
       chaSave: data.chaSave
     });
-     this.perception = PositiveNumber.create(data.perception);
-    // skills
+     this.skills = Skills.create({
+      acrobatics: data.acrobatics,
+      animalHandling: data.animalHandling,
+      arcana: data.arcana,
+      athletics: data.athletics,
+      deception: data.deception,
+      history: data.history,
+      insight: data.insight,
+      intimidation: data.intimidation,
+      investigation: data.investigation,
+      medicine: data.medicine,
+      nature: data.nature,
+      perception: data.perception,
+      performance: data.performance,
+      persuasion: data.persuasion,
+      religion: data.religion,
+      sleightOfHand: data.sleightOfHand,
+      stealth: data.stealth,
+      survival: data.survival,
+    });
      this.dmgVuln = TextField.create(data.dmgVuln);
      this.dmgResist = TextField.create(data.dmgResist);
      this.dmgImm = TextField.create(data.dmgImm);

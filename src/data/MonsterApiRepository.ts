@@ -38,7 +38,26 @@ interface MonsterRaw {
   wisdom_save: number | null,
   charisma_save: number | null,
   perception: number,
-  // skills: {};
+  skills: {
+    acrobatics?: number;
+    animalHandling?: number;
+    arcana?: number;
+    athletics?: number;
+    deception?: number;
+    history?: number;
+    insight?: number;
+    intimidation?: number;
+    investigation?: number;
+    medicine?: number;
+    nature?: number;
+    perception?: number;
+    performance?: number;
+    persuasion?: number;
+    religion?: number;
+    sleightOfHand?: number;
+    stealth?: number;
+    survival?: number;
+  };
   damage_vulnerabilities: string;
   damage_resistances: string;
   damage_immunities: string;
@@ -93,7 +112,7 @@ export class MonsterApiRepository implements MonsterRepository{
   async getRawMonsterList(): Promise<void> {
 
     let allRawMonsters: MonsterRaw[] = [];
-    let nextUrl: string | null = 'https://api.open5e.com/v1/monsters/?document__slug=wotc-srd&fields=name,desc,size,type,armor_class,armor_desc,hit_points,hit_dice,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,strength_save,dexterity_save,constitution_save,intelligence_save,wisdom_save,charisma_save,perception,skills,damage_vulnerabilities,damage_resistances,damage_immunities,condition_immunities,senses,languages,challenge_rating,actions,bonus_actions,reactions,legendary_desc,legendary_actions,special_abilities';
+    let nextUrl: string | null = 'https://api.open5e.com/v1/monsters/?document__slug=wotc-srd&fields=name,desc,size,type,armor_class,armor_desc,hit_points,hit_dice,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,strength_save,dexterity_save,constitution_save,intelligence_save,wisdom_save,charisma_save,skills,damage_vulnerabilities,damage_resistances,damage_immunities,condition_immunities,senses,languages,challenge_rating,actions,bonus_actions,reactions,legendary_desc,legendary_actions,special_abilities';
 
     while (nextUrl) {
       const data: Open5eResponse<MonsterRaw> = await this.open5eFetch<Open5eResponse<MonsterRaw>>(nextUrl);
@@ -134,8 +153,24 @@ export class MonsterApiRepository implements MonsterRepository{
       intSave: element.intelligence_save ? element.intelligence_save : 0,
       wisSave: element.wisdom_save ? element.wisdom_save : 0,
       chaSave: element.charisma_save ? element.charisma_save : 0,
-      perception: element.perception,
-      // skills
+      acrobatics: element.skills.acrobatics ? element.skills.acrobatics : 0,
+      animalHandling: element.skills.animalHandling ? element.skills.animalHandling : 0,
+      arcana: element.skills.arcana ? element.skills.arcana : 0,
+      athletics: element.skills.athletics ? element.skills.athletics : 0,
+      deception: element.skills.deception ? element.skills.deception : 0,
+      history: element.skills.history ? element.skills.history : 0,
+      insight: element.skills.insight ? element.skills.insight : 0,
+      intimidation: element.skills.intimidation ? element.skills.intimidation : 0,
+      investigation: element.skills.investigation ? element.skills.investigation : 0,
+      medicine: element.skills.medicine ? element.skills.medicine : 0,
+      nature: element.skills.nature ? element.skills.nature : 0,
+      perception: element.skills.perception ? element.skills.perception : 0,
+      performance: element.skills.performance ? element.skills.performance : 0,
+      persuasion: element.skills.persuasion ? element.skills.persuasion : 0,
+      religion: element.skills.religion ? element.skills.religion : 0,
+      sleightOfHand: element.skills.sleightOfHand ? element.skills.sleightOfHand : 0,
+      stealth: element.skills.stealth ? element.skills.stealth : 0,
+      survival: element.skills.survival ? element.skills.survival : 0,
       dmgVuln: element.damage_vulnerabilities ? element.damage_vulnerabilities : 'no',
       dmgResist: element.damage_resistances ? element.damage_resistances : 'no',
       dmgImm: element.damage_immunities ? element.damage_immunities : 'no',

@@ -11,7 +11,18 @@ describe('Tests of Entity Spell', () => {
     id: 'Dancing Lights',
     level: 0,
     school: 'Evocation',
-    classList: ['bard', 'warlock', 'wizard']
+    classList: ['bard', 'warlock', 'wizard'],
+    description: 'You create up to four torch-sized lights within range, making them appear as torches, lanterns, or glowing orbs that hover in the air for the duration.',
+    highLevel: '',
+    range: '120 feet',
+    vComponents: true,
+    sComponents: true,
+    mComponents: true,
+    materialComponents: 'A bit of phosphorus or wychwood, or a glowworm.',
+    ritual: false,
+    duration: 'Concentration, up to 1 minute',
+    concentration: true,
+    castingTime: '1 action'
   };
 
 
@@ -28,14 +39,25 @@ describe('Tests of Entity Spell', () => {
     expect(spell.school).toBeInstanceOf(School);
     expect(spell.classList[0]).toBeInstanceOf(CharacterClass);
   });
-  
+
   it('Should update Spell properties with new data', () => {
     const spell = Spell.create(validSpellData);
-    
+
     const updatedData: SpellData = {
       level: 0,
       school: 'Abjuration',
-      classList: ['cleric']
+      classList: ['cleric'],
+      description: 'Updated description',
+      highLevel: 'Updated high level',
+      range: '60 feet',
+      vComponents: true,
+      sComponents: true,
+      mComponents: false,
+      materialComponents: '',
+      ritual: true,
+      duration: '1 hour',
+      concentration: false,
+      castingTime: '1 bonus action',
     };
 
     spell.update(updatedData);
@@ -44,12 +66,12 @@ describe('Tests of Entity Spell', () => {
     expect(spell.school.value).toBe(updatedData.school);
     expect(spell.classList[0].value).toBe(updatedData.classList[0]);
   });
-  
+
   it('Should throw an error if Value Object validation fails', () => {
-    
+
     const invalidData = { ...validSpellData, school: '' };
 
     expect(() => Spell.create(invalidData)).toThrow();
   });
-  
+
 });

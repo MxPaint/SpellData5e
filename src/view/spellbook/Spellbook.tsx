@@ -33,8 +33,8 @@ export const Spellbook = (props: Props) => {
 
   const [listData, setListData] = useState<Spell[]>([]);
   const [chartData, setChartData] = useState<SpellGroup[]>([]);
-  const [sortType, setSortType] = useState<SortOrder>('default');
-  const [sortedList, setSortedList] = useState<School[]>(defaultList);
+  const [sortType] = useState<SortOrder>('default');
+  const [, setSortedList] = useState<School[]>(defaultList);
 
   const [levelFilter, setLevelFilter] = useState<string>('all');
   const [schoolFilter, setSchoolFilter] = useState<string>('all');

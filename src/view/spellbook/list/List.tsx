@@ -16,15 +16,15 @@ export const List = (props: Props) => {
 
   const [listData, setListData] = useState<Spell[]>([]);
 
-  const [levelFilter, setLevelFilter] = useState<string>('all');
-  const [schoolFilter, setSchoolFilter] = useState<string>('all');
-  const [classFilter, setClassFilter] = useState<string>('all');
+  const [levelFilter] = useState<string>('all');
+  const [schoolFilter] = useState<string>('all');
+  const [classFilter] = useState<string>('all');
 
-  const [listOrder, setListOrder] = useState<string>('Name');
-  const [ascOrder, setAscOrder] = useState<boolean>(true);
+  const [listOrder] = useState<string>('Name');
+  const [ascOrder] = useState<boolean>(true);
 
   useEffect(() => {
-    const { getSpellList, getSpellGroups } = props.root.getSpellDataCases();
+    const { getSpellList } = props.root.getSpellDataCases();
 
     setListData(getSpellList.execute());
 

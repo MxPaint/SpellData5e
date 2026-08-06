@@ -66,7 +66,7 @@ export const Graph = (props: Props) => {
   }, [sortType]);
 
   useEffect(() => {
-    const { getSpellList, getSpellGroups } = props.root.getSpellDataCases();
+    const { getSpellGroups } = props.root.getSpellDataCases();
 
     setChartData(getSpellGroups.execute());
 

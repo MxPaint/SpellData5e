@@ -18,7 +18,7 @@ export class SpellChartEngine {
 
     const schools = d3.group(data, d => d.school.value);
     const schoolNames = d3.sort(Array.from(schools.keys()));
-    const levels = new Set(data.map(d => d.level.value));
+    //const levels = new Set(data.map(d => d.level.value));
 
     const width = 1000;
     const height = schoolNames.length * 55;
@@ -43,6 +43,7 @@ export class SpellChartEngine {
 
     //["#ffffcc","#ffefa5","#fedc7f","#febf5b","#fd9d43","#fc7034","#f23d26","#d91620","#b40325","#800026"]
 
+    // @ts-expect-error
     this.color = d3.scaleOrdinal().range([
       "#800026",
       "#b40325",
@@ -83,6 +84,7 @@ export class SpellChartEngine {
         .attr("y2", height - marginBottom))
       .call(g => g.selectAll(".domain").remove());
 
+    // @ts-expect-error
     this.g = this.svg.append("g")
       .attr("text-anchor", "end")
       .style("font", "10px sans-serif")
@@ -119,6 +121,7 @@ export class SpellChartEngine {
       .join("circle")
       .attr("class", "spell-dot")
       .attr("cx", d => d.fx) // Use calculated simulation x (which matches fx)
+      // @ts-expect-error
       .attr("cy", d => d.y) // Use calculated simulation y (pushed apart)
       .attr("fill", d => this.color(d.level.value))
       .attr("stroke", "#800026")

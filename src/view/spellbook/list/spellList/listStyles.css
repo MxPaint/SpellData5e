@@ -1,13 +1,18 @@
+.spell-list-block {
+  height: inherit;
+}
+
 .spell-data {
+  width: 100%;
+  height: inherit;
+  background-color: bisque;
   padding-top: 15px;
   overflow-y: auto;
-  width: 100%;
-  height: auto;
-  flex: 1;
-  background-color: bisque;
+  scrollbar-width: thin;
 }
 
 .list-block {
+  
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

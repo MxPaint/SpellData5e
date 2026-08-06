@@ -1,4 +1,4 @@
-import type { SpellGroup } from "../../../domain/Spells/entities/SpellGroup";
+import type { SpellGroup } from "../../../../domain/Spells/entities/SpellGroup";
 import './tooltipStyle.css';
 
 interface TooltipData {
@@ -9,10 +9,10 @@ interface TooltipData {
 
 export const GroupTooltip = (props: TooltipData) => {
   return (
-    <div 
+    <div
       className="tooltip"
-      style={{  
-        top: props.y, 
+      style={{
+        top: props.y,
         left: props.x
       }}
     >

@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import type { SpellGroup } from "../../../domain/Spells/entities/SpellGroup";
+import type { SpellGroup } from "../../../../domain/Spells/entities/SpellGroup";
 import './chartStyles.css';
 
 export class SpellChartEngine {
@@ -15,11 +15,11 @@ export class SpellChartEngine {
     onHover: (event: MouseEvent, data: any | null) => void
   ) {
     this.svg = d3.select(container);
-    
+
     const schools = d3.group(data, d => d.school.value);
     const schoolNames = d3.sort(Array.from(schools.keys()));
     const levels = new Set(data.map(d => d.level.value));
-    
+
     const width = 1000;
     const height = schoolNames.length * 55;
     const marginTop = 30;
@@ -71,37 +71,37 @@ export class SpellChartEngine {
       .attr("transform", `translate(0,${marginTop})`)
       .call(d3.axisTop(x).ticks(null))
       .call(g => g.append("text")
-            .text("Number of spells")
-            .attr("fill", "darkred")
-            .attr("transform", `translate(${width - marginRight},0)`)
-            .attr("text-anchor", "end")
-            .attr("dy", -22)
+        .text("Number of spells")
+        .attr("fill", "darkred")
+        .attr("transform", `translate(${width - marginRight},0)`)
+        .attr("text-anchor", "end")
+        .attr("dy", -22)
       )
       .call(g => g.selectAll(".tick line").clone()
-          .attr("stroke", "darkred")
-          .attr("stroke-opacity", 0.1)
-          .attr("y2", height - marginBottom))
+        .attr("stroke", "darkred")
+        .attr("stroke-opacity", 0.1)
+        .attr("y2", height - marginBottom))
       .call(g => g.selectAll(".domain").remove());
 
     this.g = this.svg.append("g")
-        .attr("text-anchor", "end")
-        .style("font", "10px sans-serif")
-        .selectAll()
-        .data(Array.from(schools))
-        .join("g")
-        .attr("fill", "darkred")
-        .attr("class", "school-row")
-        .attr("transform", ([school]) => `translate(0,${this.y(school)})`);
+      .attr("text-anchor", "end")
+      .style("font", "10px sans-serif")
+      .selectAll()
+      .data(Array.from(schools))
+      .join("g")
+      .attr("fill", "darkred")
+      .attr("class", "school-row")
+      .attr("transform", ([school]) => `translate(0,${this.y(school)})`);
 
     this.g.append("line")
-        .attr("stroke", "darkred")
-        .attr("x1", ([, values]) => x(d3.min(values, d => d.count.value)!))
-        .attr("x2", ([, values]) => x(d3.max(values, d => d.count.value)!));
+      .attr("stroke", "darkred")
+      .attr("x1", ([, values]) => x(d3.min(values, d => d.count.value)!))
+      .attr("x2", ([, values]) => x(d3.max(values, d => d.count.value)!));
 
     this.g.append("text")
-        .attr("dy", "0.35em")
-        .attr("x", ([, values]) => x(d3.min(values, d => d.count.value)!) - 6)
-        .text(([school]) => school);
+      .attr("dy", "0.35em")
+      .attr("x", ([, values]) => x(d3.min(values, d => d.count.value)!) - 6)
+      .text(([school]) => school);
 
     this.nodes = data.map(d => ({
       ...d,
@@ -112,47 +112,47 @@ export class SpellChartEngine {
     this.runSimulation();
 
     const dotGroup = this.svg.append("g")
-        .attr("class", "dots");
+      .attr("class", "dots");
 
     dotGroup.selectAll("circle")
-        .data(this.nodes)
-        .join("circle")
-        .attr("class", "spell-dot")
-        .attr("cx", d => d.fx) // Use calculated simulation x (which matches fx)
-        .attr("cy", d => d.y) // Use calculated simulation y (pushed apart)
-        .attr("fill", d => this.color(d.level.value))
-        .attr("stroke", "#800026")
-        .attr("stroke-opacity", 0.5)
-        .attr("r", 4)
-        .on('mouseover', (event, d) => onHover(event, d))
-        .on('mousemove', (event, d) => onHover(event, d))
-        .on('mouseleave', (event) => onHover(event, null));
+      .data(this.nodes)
+      .join("circle")
+      .attr("class", "spell-dot")
+      .attr("cx", d => d.fx) // Use calculated simulation x (which matches fx)
+      .attr("cy", d => d.y) // Use calculated simulation y (pushed apart)
+      .attr("fill", d => this.color(d.level.value))
+      .attr("stroke", "#800026")
+      .attr("stroke-opacity", 0.5)
+      .attr("r", 4)
+      .on('mouseover', (event, d) => onHover(event, d))
+      .on('mousemove', (event, d) => onHover(event, d))
+      .on('mouseleave', (event) => onHover(event, null));
   }
 
   public update(names: string[]) {
     this.y.domain(names);
-    
+
     this.svg.selectAll(".school-row")
       .transition()
       .duration(750)
       .attr("transform", (d: any) => `translate(0,${this.y(d[0])})`);
-    
+
     this.runSimulation();
-    
+
     this.svg.selectAll(".spell-dot")
       .data(this.nodes)
       .transition()
       .duration(750)
       .attr("cy", (d: any) => d.y);
-      
+
     //console.log(names);
   }
 
   private runSimulation() {
-    
+
     const simulation = d3.forceSimulation(this.nodes)
       .force("y", d3.forceY((d: any) => this.y(d.school.value) || 0).strength(1))
-      .force("collide", d3.forceCollide(4.5)) 
+      .force("collide", d3.forceCollide(4.5))
       .stop();
 
     for (let i = 0; i < 120; ++i) simulation.tick();

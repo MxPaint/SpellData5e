@@ -1,7 +1,7 @@
-import type { Spell } from "../../../domain/Spells/entities/Spell"
-import { CharacterClass } from "../../../domain/Shared/valueObjects/CharacterClass";
-import type { Level } from "../../../domain/Shared/valueObjects/Level";
-import type { School } from "../../../domain/Shared/valueObjects/School";
+import type { Spell } from "../../../../domain/Spells/entities/Spell"
+import { CharacterClass } from "../../../../domain/Shared/valueObjects/CharacterClass";
+import type { Level } from "../../../../domain/Shared/valueObjects/Level";
+import type { School } from "../../../../domain/Shared/valueObjects/School";
 
 interface Props {
   list: Spell[],

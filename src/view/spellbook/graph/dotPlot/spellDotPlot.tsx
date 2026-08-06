@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Chart } from './useChart';
-import type { SpellGroup } from '../../../domain/Spells/entities/SpellGroup';
-import type { School } from '../../../domain/Shared/valueObjects/School';
+import type { SpellGroup } from '../../../../domain/Spells/entities/SpellGroup';
+import type { School } from '../../../../domain/Shared/valueObjects/School';
 import { GroupTooltip } from '../tooltip/GroupTooltip';
 
 interface Props {
@@ -18,9 +18,9 @@ const Legend = ({ scale }: { scale: d3.ScaleOrdinal<number, string, never> }) =>
         <div key={level} className='level-legend'>
           <div
             className='legend-color'
-            style={{ 
-              backgroundColor: scale(level) 
-            }} 
+            style={{
+              backgroundColor: scale(level)
+            }}
           />
           <span style={{ fontSize: '12px' }}>{level}</span>
         </div>
@@ -29,7 +29,7 @@ const Legend = ({ scale }: { scale: d3.ScaleOrdinal<number, string, never> }) =>
   );
 };
 
-export const SpellDotPlot = (props: Props ) => {
+export const SpellDotPlot = (props: Props) => {
   const [colorScale, setColorScale] = useState<d3.ScaleOrdinal<number, string, never> | null>(null);
 
   const [tooltip, setTooltip] = useState<{ x: number; y: number; data: any } | null>(null);
@@ -54,10 +54,10 @@ export const SpellDotPlot = (props: Props ) => {
         }}
       />
       {tooltip && (
-        <GroupTooltip 
-          x={tooltip.x} 
-          y={tooltip.y} 
-          data={tooltip.data} 
+        <GroupTooltip
+          x={tooltip.x}
+          y={tooltip.y}
+          data={tooltip.data}
         />
       )}
     </div>

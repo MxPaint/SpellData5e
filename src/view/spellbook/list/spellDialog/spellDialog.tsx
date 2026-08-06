@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import type { Spell } from "../../../domain/Spells/entities/Spell";
+import type { Spell } from "../../../../domain/Spells/entities/Spell";
 import './spellDialogStyles.css';
-import { MarkdownRenderer } from "../../markdownRenderer/MarkdownRenderer";
+import { MarkdownRenderer } from "../../../markdownRenderer/MarkdownRenderer";
 
 interface DialogProps {
   isOpen: boolean;
@@ -37,7 +37,7 @@ export const SpellDialog = (props: DialogProps) => {
   }
 
   const concentrationProp = () => {
-    if(concentration) {
+    if (concentration) {
       return <li>Requires concentration</li>;
     }
 
@@ -45,7 +45,7 @@ export const SpellDialog = (props: DialogProps) => {
   }
 
   const ritualProp = () => {
-    if(ritual) {
+    if (ritual) {
       return <li>Can be cast as ritual</li>;
     }
 
@@ -53,14 +53,14 @@ export const SpellDialog = (props: DialogProps) => {
   }
 
   const highLevelsInfo = () => {
-    if(highLevel === 'no') {
+    if (highLevel === 'no') {
       return <p className='hidden'></p>
     }
-    
+
     return (
       <div className='high-level'>
         <strong>Higher levels: </strong>
-        <MarkdownRenderer content={highLevel} /> 
+        <MarkdownRenderer content={highLevel} />
       </div>
     );
   }
@@ -70,7 +70,7 @@ export const SpellDialog = (props: DialogProps) => {
     if (!dialog) return;
 
     if (props.isOpen) {
-      if (!dialog.open) dialog.showModal(); 
+      if (!dialog.open) dialog.showModal();
     } else {
       if (dialog.open) dialog.close();
     }
@@ -108,7 +108,7 @@ export const SpellDialog = (props: DialogProps) => {
           </div>
         </div>
         <div className='info-block'>
-          <MarkdownRenderer content={desc}/> 
+          <MarkdownRenderer content={desc} />
           {highLevelsInfo()}
         </div>
       </div>
